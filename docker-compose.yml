@@ -1,0 +1,62 @@
+version: "3"
+services:
+  campaign-consumer-api-db:
+    image: campaign-consumer-api-db
+    container_name: campaign-consumer-api-db
+    ports:
+      - "5432:5432"
+    build: 
+      args:
+        - LOCAL_SQL=./resources/postgres/scripts/local/sql
+        - MIGRATIONS_SQL=./resources/postgres/scripts/migrations/sql
+      dockerfile: ./resources/postgres/Dockerfile
+
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9092"
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: INSIDE://:9094,OUTSIDE://127.0.0.1:9092
+      KAFKA_LISTENERS: INSIDE://:9094,OUTSIDE://:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INSIDE
+    restart: unless-stopped
+
+  schemaregistry:
+    image: confluentinc/cp-schema-registry:7.2.1
+    hostname: schema-registry
+    container_name: schema-registry
+    depends_on:
+      - kafka
+    ports:
+      - "8086:8086"
+    environment:
+      SCHEMA_REGISTRY_HOST_NAME: schema-registry
+      SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS: 'kafka:9094'
+      SCHEMA_REGISTRY_LISTENERS: http://0.0.0.0:8086
+
+  ui:
+    image: provectuslabs/kafka-ui
+    container_name: kafkaui
+    depends_on:
+      - zookeeper
+      - kafka
+      - schemaregistry
+    ports:
+      - "8080:8080"
+    environment:
+      KAFKA_CLUSTERS_0_NAME: local
+      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9094
+      KAFKA_CLUSTERS_0_SCHEMAREGISTRY: http://schema-registry:8086
+
+

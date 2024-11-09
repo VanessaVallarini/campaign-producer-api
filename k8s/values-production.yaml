@@ -1,0 +1,61 @@
+# cluster settings
+
+appConfigFile:
+  enabled: true
+  data:
+   - volumeName: service-config
+     mountPath: /app/internal/config
+     fileName: configuration.yml
+     fileContent: |
+      app:
+        name: campaign-producer-api
+      server:
+        host: 0.0.0.0:8080
+      meta:
+        host: 0.0.0.0:8081
+      database:
+          host: production.com
+          port: 6432
+          username: campaign-consumer-api-app
+          database: campaign-consumer-api
+          conn:
+            min: 5
+            max: 10
+            lifetime: 120s
+            idletime: 120s
+      kafka-owner:
+        client-id: campaign-consumer-api
+        consumer-group-id: campaign-consumer-api
+        brokers:
+          - production:9092
+        acks: all
+        timeout: 3m
+        use-authentication: true
+        enable-tls: true
+        enable-events: true
+        sasl-mechanism: PLAIN
+        retry-max: 35
+        schema-registry:
+          host: http://production:8086
+      kafka-owner:
+        topic: campaign.campaign-owner
+        subject: campaign.campaign_owner_value
+      kafka-slug:
+        topic: campaign.campaign-slug
+        subject: campaign.campaign_slug_value
+      kafka-region:
+        topic: campaign.campaign-region
+        subject: campaign.campaign_region_value
+      kafka-merchant:
+        topic: campaign.campaign-merchant
+        subject: campaign.campaign_merchant_value
+      kafka-campaign:
+        topic: campaign.campaign
+        subject: campaign.campaign_value
+      kafka-click-impression:
+        topic: campaign.campaign-click-impression
+        subject: campaign.campaign_click_impression_value
+      kafka-spent:
+        topic: campaign.campaign-spent
+        subject: campaign.campaign_spent_value
+      time-location: "America/Sao_Paulo"
