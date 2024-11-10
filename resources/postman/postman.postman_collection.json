@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "2a347214-5137-4df2-a76c-c83ddf98a906",
+		"name": "postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "20948507",
+		"_collection_link": "https://universal-moon-755048.postman.co/workspace/My-Workspace~fe364319-888a-4ff3-8cbd-4d561dbb3ce7/collection/20948507-2a347214-5137-4df2-a76c-c83ddf98a906?action=share&source=collection_link&creator=20948507"
+	},
+	"item": [
+		{
+			"name": "owner create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-user-email",
+						"value": "vanessa.vallarini@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"fabio@gmail.com\"\n}"
+				},
+				"url": "http://localhost:8888/v1/owner"
+			},
+			"response": []
+		},
+		{
+			"name": "owner fetch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/owner/5aa55465-c28d-4ef6-975d-ddae15b218c5"
+			},
+			"response": []
+		},
+		{
+			"name": "slug create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-user-email",
+						"value": "vanessa.vallarini@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"pastel\",\n    \"cost\": 0.50\n}"
+				},
+				"url": "http://localhost:8888/v1/slug"
+			},
+			"response": []
+		},
+		{
+			"name": "slug fetch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/slug/0522e257-242e-4bfb-8e0a-2bb8c66cfa14"
+			},
+			"response": []
+		},
+		{
+			"name": "slug list history",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/history/slug/0522e257-242e-4bfb-8e0a-2bb8c66cfa14"
+			},
+			"response": []
+		},
+		{
+			"name": "region create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-user-email",
+						"value": "vanessa.vallarini@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"londrina\",\n    \"lat\": -23.3212795,\n    \"long\": -51.165763,\n    \"cost\": 0.50\n}"
+				},
+				"url": "http://localhost:8888/v1/region"
+			},
+			"response": []
+		},
+		{
+			"name": "region fetch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/region/d5865cec-3d43-48b5-8e37-13e175901d55"
+			},
+			"response": []
+		},
+		{
+			"name": "region list history",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/history/region/d5865cec-3d43-48b5-8e37-13e175901d55"
+			},
+			"response": []
+		},
+		{
+			"name": "merchant create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-user-email",
+						"value": "vanessa.vallarini@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ownerId\": \"dd8eab22-e330-432b-b47a-89c861a8f02b\",\n    \"regionId\": \"d5865cec-3d43-48b5-8e37-13e175901d55\",\n    \"slugs\": [\n        \"0522e257-242e-4bfb-8e0a-2bb8c66cfa14\"\n    ],\n    \"name\": \"Pastelaria Promo\"\n}"
+				},
+				"url": "http://localhost:8888/v1/merchant"
+			},
+			"response": []
+		},
+		{
+			"name": "merchant fetch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/merchant/256517c8-8d47-4a94-87a5-0709ae3be34c"
+			},
+			"response": []
+		},
+		{
+			"name": "campaign create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-user-email",
+						"value": "vanessa.vallarini@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"merchantId\": \"256517c8-8d47-4a94-87a5-0709ae3be34c\",\n    \"budget\": 400.00\n}"
+				},
+				"url": "http://localhost:8888/v1/campaign"
+			},
+			"response": []
+		},
+		{
+			"name": "campaign fetch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/campaign/00004377-6826-44fc-acd0-0c477d1be2dd"
+			},
+			"response": []
+		},
+		{
+			"name": "campaign list history",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/history/campaign/00004377-6826-44fc-acd0-0c477d1be2dd"
+			},
+			"response": []
+		},
+		{
+			"name": "spent create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "x-user-email",
+						"value": "vanessa.vallarini@gmail.com",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"campaign_id\": \"00004377-6826-44fc-acd0-0c477d1be2dd\",\n    \"merchant_id\": \"256517c8-8d47-4a94-87a5-0709ae3be34c\",\n    \"session_id\": \"32c5d278-ee41-466a-acc8-45db7d39e317\",\n    \"slug_name\": \"pastel\",\n    \"user_id\": \"361f1831-6454-4f98-b589-7c814becff3d\",\n    \"event_type\": \"CLICK\",\n    \"ip\": \"24.48.0.1\"\n}"
+				},
+				"url": "http://localhost:8888/v1/spent"
+			},
+			"response": []
+		},
+		{
+			"name": "spent fetch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8888/v1/spent/256517c8-8d47-4a94-87a5-0709ae3be34c?bucket=2024-11-09",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"v1",
+						"spent",
+						"256517c8-8d47-4a94-87a5-0709ae3be34c"
+					],
+					"query": [
+						{
+							"key": "bucket",
+							"value": "2024-11-09"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ledger fetch",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": "http://localhost:8888/v1/ledger/00004377-6826-44fc-acd0-0c477d1be2dd"
+			},
+			"response": []
+		}
+	]
+}
