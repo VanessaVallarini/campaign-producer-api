@@ -8,3 +8,8 @@ type Paging struct {
 	Size       int `json:"pageSize"`
 	TotalItems int `json:"totalItems"`
 }
+
+type PagedResults struct {
+	Data   interface{} `json:"data"`
+	Paging Paging      `json:"paging"`
+}

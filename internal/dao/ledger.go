@@ -107,7 +107,7 @@ func (l LedgerDao) List(ctx context.Context, campaignId uuid.UUID, filters model
 
 	for rows.Next() {
 		var ledger model.Ledger
-		err := rows.Scan(&ledger.SpentId, &ledger.CampaignId, &ledger.MerchantId, &ledger.SlugName,
+		err := rows.Scan(&ledger.Id, &ledger.SpentId, &ledger.CampaignId, &ledger.MerchantId, &ledger.SlugName,
 			&ledger.RegionName, &ledger.UserId, &ledger.SessionId, &ledger.EventType,
 			&ledger.Cost, &ledger.Ip, &ledger.Lat, &ledger.Long, &ledger.CreatedAt, &ledger.EventTime)
 		if err != nil {

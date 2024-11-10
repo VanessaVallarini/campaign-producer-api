@@ -41,7 +41,7 @@ func (o Owner) Create(c echo.Context) error {
 
 	userEmail := util.GetHeaderFromContext(c, "x-user-email")
 	req.CreatedBy = userEmail
-	if req.Email == "" {
+	if userEmail == "" {
 		return ResponseError(c, model.ErrInvalid.Wrap(nil, "Invalid request"), "Email is required")
 	}
 

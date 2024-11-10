@@ -49,16 +49,42 @@ func main() {
 	// dao
 	pool := postgres.CreatePool(ctx, &cfg.Database)
 	ownerDao := dao.NewOwnerDao(pool)
+	slugDao := dao.NewSlugDao(pool)
+	slugHistoryDao := dao.NewSlugHistoryDao(pool)
+	regionDao := dao.NewRegionDao(pool)
+	regionHistoryDao := dao.NewRegionHistoryDao(pool)
+	merchantDao := dao.NewMerchantDao(pool)
+	campaignDao := dao.NewCampaignDao(pool)
+	campaignHistoryDao := dao.NewCampaignHistoryDao(pool)
+	spentDao := dao.NewSpentDao(pool)
+	ledgerDao := dao.NewLedgerDao(pool)
 
 	// client
 	localCache := cache.NewLocalMapService()
-	kafkaProducer := producer.NewProducer(ctx, cfg.KafkaOwner, model.OwnerAvro)
+	kafkaOwnerProducer := producer.NewProducer(ctx, cfg.KafkaOwner, model.OwnerAvro)
+	kafkaSlugProducer := producer.NewProducer(ctx, cfg.KafkaSlug, model.SlugAvro)
+	kafkaRegionProducer := producer.NewProducer(ctx, cfg.KafkaRegion, model.RegionAvro)
+	kafkaMerchantProducer := producer.NewProducer(ctx, cfg.KafkaMerchant, model.MerchantAvro)
+	kafkaCampaignProducer := producer.NewProducer(ctx, cfg.KafkaCampaign, model.CampaignAvro)
+	kafkaSpentProducer := producer.NewProducer(ctx, cfg.KafkaSpent, model.SpentEventAvro)
 
 	// service
-	ownerService := service.NewOwnerService(ownerDao, localCache, kafkaProducer, timeLocation)
+	ownerService := service.NewOwnerService(ownerDao, localCache, kafkaOwnerProducer, timeLocation)
+	slugService := service.NewSlugService(slugDao, slugHistoryDao, localCache, kafkaSlugProducer, timeLocation)
+	regionService := service.NewRegionService(regionDao, regionHistoryDao, localCache, kafkaRegionProducer, timeLocation)
+	merchantService := service.NewMerchantService(merchantDao, localCache, kafkaMerchantProducer, timeLocation)
+	campaignService := service.NewCampaignService(campaignDao, campaignHistoryDao, localCache, kafkaCampaignProducer, timeLocation)
+	spentService := service.NewSpentService(spentDao, kafkaSpentProducer, timeLocation)
+	ledgerService := service.NewLedgerService(ledgerDao)
 
 	// api
 	api.NewOwner(ownerService).Register(server)
+	api.NewSlug(slugService).Register(server)
+	api.NewRegion(regionService).Register(server)
+	api.NewMerchant(merchantService).Register(server)
+	api.NewCampaign(campaignService).Register(server)
+	api.NewSpent(spentService).Register(server)
+	api.NewLedger(ledgerService).Register(server)
 
 	// Start HTTP server
 	go func() {

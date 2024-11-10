@@ -89,3 +89,11 @@ type Merchant struct {
 	CreatedAt time.Time   `json:"created_at" avro:"created_at"`
 	UpdatedAt time.Time   `json:"updated_at" avro:"updated_at"`
 }
+
+type MerchantCreateRequest struct {
+	OwnerId   uuid.UUID   `json:"ownerId"`
+	RegionId  uuid.UUID   `json:"regionId"`
+	Slugs     []uuid.UUID `json:"slugs"`
+	Name      string      `json:"name"`
+	CreatedBy string      `json:"createdBy"`
+}

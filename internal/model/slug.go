@@ -67,3 +67,9 @@ type Slug struct {
 	CreatedAt time.Time `json:"created_at" avro:"created_at"`
 	UpdatedAt time.Time `json:"updated_at" avro:"updated_at"`
 }
+
+type SlugCreateRequest struct {
+	Name      string  `json:"name"`
+	Cost      float64 `json:"cost"`
+	CreatedBy string  `json:"createdBy"`
+}

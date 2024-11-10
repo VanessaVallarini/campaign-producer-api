@@ -44,7 +44,6 @@ type Conn struct {
 
 type KafkaConfig struct {
 	ClientId          string
-	ConsumerGroupId   string
 	Brokers           []string
 	Acks              string
 	Timeout           time.Duration
@@ -121,7 +120,6 @@ func GetConfig() Config {
 			},
 			KafkaOwner: KafkaConfig{
 				ClientId:          viperCfg.GetString("kafka.client-id"),
-				ConsumerGroupId:   viperCfg.GetString("kafka.consumer-group-id"),
 				Brokers:           viperCfg.GetStringSlice("kafka.brokers"),
 				Acks:              viperCfg.GetString("kafka.acks"),
 				Timeout:           viperCfg.GetDuration("kafka.timeout"),
@@ -143,7 +141,6 @@ func GetConfig() Config {
 			},
 			KafkaSlug: KafkaConfig{
 				ClientId:          viperCfg.GetString("kafka.client-id"),
-				ConsumerGroupId:   viperCfg.GetString("kafka.consumer-group-id"),
 				Brokers:           viperCfg.GetStringSlice("kafka.brokers"),
 				Acks:              viperCfg.GetString("kafka.acks"),
 				Timeout:           viperCfg.GetDuration("kafka.timeout"),
@@ -165,7 +162,6 @@ func GetConfig() Config {
 			},
 			KafkaRegion: KafkaConfig{
 				ClientId:          viperCfg.GetString("kafka.client-id"),
-				ConsumerGroupId:   viperCfg.GetString("kafka.consumer-group-id"),
 				Brokers:           viperCfg.GetStringSlice("kafka.brokers"),
 				Acks:              viperCfg.GetString("kafka.acks"),
 				Timeout:           viperCfg.GetDuration("kafka.timeout"),
@@ -187,7 +183,6 @@ func GetConfig() Config {
 			},
 			KafkaMerchant: KafkaConfig{
 				ClientId:          viperCfg.GetString("kafka.client-id"),
-				ConsumerGroupId:   viperCfg.GetString("kafka.consumer-group-id"),
 				Brokers:           viperCfg.GetStringSlice("kafka.brokers"),
 				Acks:              viperCfg.GetString("kafka.acks"),
 				Timeout:           viperCfg.GetDuration("kafka.timeout"),
@@ -209,7 +204,6 @@ func GetConfig() Config {
 			},
 			KafkaCampaign: KafkaConfig{
 				ClientId:          viperCfg.GetString("kafka.client-id"),
-				ConsumerGroupId:   viperCfg.GetString("kafka.consumer-group-id"),
 				Brokers:           viperCfg.GetStringSlice("kafka.brokers"),
 				Acks:              viperCfg.GetString("kafka.acks"),
 				Timeout:           viperCfg.GetDuration("kafka.timeout"),
@@ -231,7 +225,6 @@ func GetConfig() Config {
 			},
 			KafkaSpent: KafkaConfig{
 				ClientId:          viperCfg.GetString("kafka.client-id"),
-				ConsumerGroupId:   viperCfg.GetString("kafka.consumer-group-id"),
 				Brokers:           viperCfg.GetStringSlice("kafka.brokers"),
 				Acks:              viperCfg.GetString("kafka.acks"),
 				Timeout:           viperCfg.GetDuration("kafka.timeout"),

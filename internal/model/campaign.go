@@ -70,3 +70,9 @@ type Campaign struct {
 	CreatedAt  time.Time `json:"created_at" avro:"created_at"`
 	UpdatedAt  time.Time `json:"updated_at" avro:"updated_at"`
 }
+
+type CampaignCreateRequest struct {
+	MerchantId uuid.UUID `json:"merchantId"`
+	Budget     float64   `json:"budget"`
+	CreatedBy  string    `json:"createdBy"`
+}

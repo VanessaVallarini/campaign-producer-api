@@ -30,12 +30,12 @@ const allSpentFields = `
 	total_impressions
 `
 
-func (sd SpentDao) FetchByMerchantIdAndBucket(ctx context.Context, id uuid.UUID, bucket string) (model.Spent, error) {
+func (sd SpentDao) FetchByMerchantIdAndBucket(ctx context.Context, merchantId uuid.UUID, bucket string) (model.Spent, error) {
 	var spent model.Spent
 
 	query := `SELECT` + allSpentFields + ` from spent WHERE merchant_id = $1 AND bucket = $2`
 
-	row := sd.pool.QueryRow(ctx, query, id, bucket)
+	row := sd.pool.QueryRow(ctx, query, merchantId, bucket)
 	err := row.Scan(
 		&spent.Id, &spent.CampaignId, &spent.MerchantId, &spent.Bucket,
 		&spent.TotalSpent, &spent.TotalClicks, &spent.TotalImpressions,
@@ -47,7 +47,7 @@ func (sd SpentDao) FetchByMerchantIdAndBucket(ctx context.Context, id uuid.UUID,
 			return model.Spent{}, model.ErrNotFound
 		}
 
-		return model.Spent{}, errors.Wrap(err, "Failed to fetch spent by campaign id in database")
+		return model.Spent{}, errors.Wrap(err, "Failed to fetch spent by merchantId id in database")
 	}
 
 	return spent, nil

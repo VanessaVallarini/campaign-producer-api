@@ -77,3 +77,11 @@ type Region struct {
 	CreatedAt time.Time `json:"created_at" avro:"created_at"`
 	UpdatedAt time.Time `json:"updated_at" avro:"updated_at"`
 }
+
+type RegionCreateRequest struct {
+	Name      string  `json:"name"`
+	Lat       float64 `json:"lat"`
+	Long      float64 `json:"long"`
+	Cost      float64 `json:"cost"`
+	CreatedBy string  `json:"createdBy"`
+}
