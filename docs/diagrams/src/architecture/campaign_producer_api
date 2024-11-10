@@ -1,0 +1,34 @@
+digraph "campaign producer api" {
+	graph [fontcolor="#2D3436" fontname="Sans-Serif" fontsize=15 label="campaign producer api" nodesep=0.60 pad=2.0 rankdir=LR ranksep=0.75 splines=ortho]
+	node [fixedsize=true fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 height=1.4 imagescale=true labelloc=b shape=box style=rounded width=1.4]
+	edge [color="#7B8894"]
+	subgraph cluster_service {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=service labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"2e9d304b5fe24090aded20d85924258b" [label="campaign-producer-api" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/k8s/compute/pod.png" shape=none]
+	}
+	subgraph cluster_queue {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=queue labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		d3603c6125d448f9adf42a824705b11c [label="campaign.campaign-owner" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/onprem/queue/kafka.png" shape=none]
+		a57e5c2c84cb4e2e841f2f03c8002fef [label="campaign.campaign-slug" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/onprem/queue/kafka.png" shape=none]
+		"73fd4a894aa648709f9e5376c5c9bdd2" [label="campaign.campaign-region" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/onprem/queue/kafka.png" shape=none]
+		b5ce8b7043524e9cad9decb43b29d702 [label="campaign.campaign-merchant" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/onprem/queue/kafka.png" shape=none]
+		"2d3a19cc3df34089bc7655b0c6640f40" [label="campaign.campaign" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/onprem/queue/kafka.png" shape=none]
+		f99790f3d07c49d0afbfda00edcdd5f3 [label="campaign.campaign-spent" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/onprem/queue/kafka.png" shape=none]
+	}
+	subgraph cluster_cache {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=cache labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		"14f2a131bd1640c195f666a8bf35f0f9" [label="Local Cache" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/generic/compute/rack.png" shape=none]
+	}
+	subgraph cluster_db {
+		graph [bgcolor="#E5F5FD" fontname="Sans-Serif" fontsize=12 label=db labeljust=l pencolor="#AEB6BE" rankdir=LR shape=box style=rounded]
+		fa632092943e481eac80f5232e944cb6 [label="campaign-consumer-db" height=1.9 image="/usr/local/lib/python3.7/site-packages/resources/onprem/database/postgresql.png" shape=none]
+	}
+	"2e9d304b5fe24090aded20d85924258b" -> d3603c6125d448f9adf42a824705b11c [color=blue dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"2e9d304b5fe24090aded20d85924258b" -> a57e5c2c84cb4e2e841f2f03c8002fef [color=blue dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"2e9d304b5fe24090aded20d85924258b" -> "73fd4a894aa648709f9e5376c5c9bdd2" [color=blue dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"2e9d304b5fe24090aded20d85924258b" -> b5ce8b7043524e9cad9decb43b29d702 [color=blue dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"2e9d304b5fe24090aded20d85924258b" -> "2d3a19cc3df34089bc7655b0c6640f40" [color=blue dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"2e9d304b5fe24090aded20d85924258b" -> f99790f3d07c49d0afbfda00edcdd5f3 [color=blue dir=forward fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"2e9d304b5fe24090aded20d85924258b" -> fa632092943e481eac80f5232e944cb6 [color=darkOrange dir=both fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+	"2e9d304b5fe24090aded20d85924258b" -> "14f2a131bd1640c195f666a8bf35f0f9" [color=darkOrange dir=both fontcolor="#2D3436" fontname="Sans-Serif" fontsize=13 style=bold]
+}
